@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class SpaController extends Controller
 {
-    // tutorial用
+    // tutorial
     public function tutorial() {
         return view('spa/tutorial');
     }
