@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["default-go-home"],{"4bbf":function(t,e,n){"use strict";n.r(e);var a=function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("v-btn",{staticClass:"ml-2",attrs:{"min-width":"0",text:"",to:"/",exact:""}},[n("v-icon",[t._v("mdi-view-dashboard")])],1)},o=[],l={name:"DefaultGoHome"},s=l,i=n("2877"),c=Object(i["a"])(s,a,o,!1,null,null,null);e["default"]=c.exports}}]);
+//# sourceMappingURL=default-go-home.69e5a825.js.map

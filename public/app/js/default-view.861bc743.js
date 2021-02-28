@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["default-view"],{"8bc2":function(e,t,n){"use strict";n.r(t);var a=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("v-main",[n("v-container",{attrs:{fluid:""}},[n("router-view",{key:e.$route.path})],1)],1)},u=[],r={name:"DefaultView"},i=r,l=n("2877"),c=Object(l["a"])(i,a,u,!1,null,null,null);t["default"]=c.exports}}]);
+//# sourceMappingURL=default-view.861bc743.js.map

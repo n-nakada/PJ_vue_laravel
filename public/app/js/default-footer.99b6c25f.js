@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["default-footer"],{ea50:function(e,t,n){"use strict";n.r(t);var o=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("v-footer",{attrs:{id:"default-footer",color:"transparent",absolute:"",app:"",inset:""}},[n("links")],1)},a=[],l=n("cc6b"),r={name:"DefaultFooter",components:{Links:l["default"]}},s=r,u=n("2877"),c=Object(u["a"])(s,o,a,!1,null,null,null);t["default"]=c.exports}}]);
+//# sourceMappingURL=default-footer.99b6c25f.js.map

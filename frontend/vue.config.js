@@ -13,4 +13,5 @@ module.exports = {
             filename: '../../resources/views/spa/tutorial.blade.php',
         },
     },
+    transpileDependencies: ['vuetify'],
 };
