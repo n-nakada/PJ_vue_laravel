@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/tutorial{any}', 'App\Http\Controllers\SpaController@tutorial')->where('any', '(/?$|/.*)');
+Route::get('/portfolio{any}', 'App\Http\Controllers\SpaController@portfolio')->where('any', '(/?$|/.*)');
 
 Route::get('/', function () {
     return view('welcome');

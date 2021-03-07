@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class SpaController extends Controller
 {
     // tutorial
-    public function tutorial() {
-        return view('spa/tutorial');
+    public function portfolio() {
+        return view('spa/portfolio');
     }
 }
