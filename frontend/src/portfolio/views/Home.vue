@@ -1,8 +1,10 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <h3>welcome {{ $store.getters.UserId }}</h3>
+    <p>{{ message }}</p>
+    <div class="home">
+        <img alt="Vue logo" src="../assets/logo.png">
+        <HelloWorld msg="Welcome to Your Vue.js App"/>
+    </div>
 </template>
 
 <script>
@@ -10,9 +12,25 @@
 import HelloWorld from '@/portfolio/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+    name: 'Home',
+    components: {
+        HelloWorld
+    },
+    data() {
+        return {
+            message: ""
+        }
+    },
+    created() {
+        this.fetchHello()
+    },
+    methods: {
+        fetchHello() {
+            const uri = ""
+            this.axios.get(uri).then(response => {
+                this.message = response.data.message
+            })
+        }
+    }
 }
 </script>
