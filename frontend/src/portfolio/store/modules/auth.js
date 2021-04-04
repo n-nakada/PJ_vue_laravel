@@ -1,5 +1,3 @@
-//import axios from 'axios'
-
 const state = {
     userId: "",
     userToken: ""
@@ -23,12 +21,11 @@ const mutations = {
 
 const actions = {
     auth(context, user) {
-        context.commit('updateUser', user);
+        context.commit('updateUser', user)
     }
 }
 
 export default {
-    namespaced: true,
     state,
     getters,
     mutations,

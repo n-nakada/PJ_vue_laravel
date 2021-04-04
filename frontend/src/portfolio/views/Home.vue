@@ -1,9 +1,11 @@
 <template>
-    <h3>welcome {{ $store.getters.UserId }}</h3>
-    <p>{{ message }}</p>
-    <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+        <h3>welcome {{ $store.getters.UserId }}</h3>
+        <p>{{ message }}</p>
+        <div class="">
+            <img alt="Vue logo" src="@/portfolio/assets/logo.png">
+            <HelloWorld msg="Welcome to Your Vue.js App"/>
+        </div>
     </div>
 </template>
 
