@@ -20,6 +20,12 @@ const mutations = {
 }
 
 const actions = {
+    init(context) {
+        context.commit('updateUser', {
+            userId: '',
+            userToken: ''
+        })
+    },
     auth(context, user) {
         context.commit('updateUser', user)
     }

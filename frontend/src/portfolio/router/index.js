@@ -11,10 +11,7 @@ import Store from '@/portfolio/store/index.js'
 
 const routes = [
     {path: '/portfolio', component: Login},
-    {path: '/portfolio/login', component: Login},
-    //{name: 'Login', path: '/login', component: Login},
-    //{name: 'Home', path: '/', component: Home, meta: { requiresAuth: true }},
-    {name: 'Home', path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
+    {path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
     {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')}
 ]
 
@@ -27,9 +24,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth) && !Store.state.userToken) {
-        //next({ path: '/login', query: { redirect: to.fullPath } })
-        next({ path: '/', query: { redirect: to.fullPath } })
+    if (to.matched.some(record => record.meta.requiresAuth) && !Store.state.auth.userToken) {
+        next({ path: '/portfolio', query: { redirect: to.fullPath } })
     } else {
         next()
     }

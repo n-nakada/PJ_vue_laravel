@@ -31,7 +31,7 @@
                     <v-btn
                         block
                         color="primary"
-                        @click="doLogin()"
+                        @click="doLogin"
                     >
                         <v-icon left>mdi-login</v-icon>
                        ログイン
@@ -55,6 +55,9 @@ export default {
     props: {
         source: String
     },
+    created() {
+        this.$store.dispatch('init')
+    },
     methods: {
         doLogin() {
             axios.post('/api/login', {
@@ -64,7 +67,11 @@ export default {
                     userId: response.data.account.userId,
                     userToken: response.data.token
                 })
-                //this.$router.push(this.$router.query.redirect)
+                if (this.$router.query) {
+                    this.$router.push(this.$router.query.redirect)
+                } else {
+                    this.$router.push({ path: "/portfolio/home"})
+                }
             })
         }
     }
