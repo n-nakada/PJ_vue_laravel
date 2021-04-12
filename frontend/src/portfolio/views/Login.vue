@@ -70,7 +70,8 @@ export default {
                 if (this.$router.query) {
                     this.$router.push(this.$router.query.redirect)
                 } else {
-                    this.$router.push({ path: "/portfolio/home"})
+                    var url = new URL(window.location.href)
+                    this.$router.push({ path: url.searchParams.get('redirect') })
                 }
             })
         }

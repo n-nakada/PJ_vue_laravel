@@ -13,7 +13,7 @@ import Store from '@/portfolio/store/index.js'
 const routes = [
     {path: '/portfolio', component: Login},
     {path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
-    {path: '/portfolio/next', component: Next},
+    {path: '/portfolio/next', component: Next, meta: { requiresAuth: true }},
     {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')}
 ]
 
