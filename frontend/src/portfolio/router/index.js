@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 // compornent
 import Login from '@/portfolio/views/Login.vue'
 import Home from '@/portfolio/views/Home.vue'
+import Next from '@/portfolio/views/Next.vue'
 
 // store
 import Store from '@/portfolio/store/index.js'
@@ -12,6 +13,7 @@ import Store from '@/portfolio/store/index.js'
 const routes = [
     {path: '/portfolio', component: Login},
     {path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
+    {path: '/portfolio/next', component: Next},
     {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')}
 ]
 
@@ -19,7 +21,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  //base: process.env.BASE_URL,
   routes
 })
 

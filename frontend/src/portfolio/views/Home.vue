@@ -6,6 +6,18 @@
             <img alt="Vue logo" src="@/portfolio/assets/logo.png">
             <HelloWorld msg="Welcome to Your Vue.js App"/>
         </div>
+        <v-btn
+            class="mx-2"
+            fab
+            dark
+            small
+            color="pink"
+            @click="next"
+        >
+            <v-icon dark>
+                mdi-heart
+            </v-icon>
+        </v-btn>
     </div>
 </template>
 
@@ -27,6 +39,9 @@ export default {
 //        this.fetchHello()
     },
     methods: {
+        next() {
+            this.$router.push({ path: "/portfolio/next" })
+        },
         fetchHello() {
             const uri = ""
             this.axios.get(uri).then(response => {
