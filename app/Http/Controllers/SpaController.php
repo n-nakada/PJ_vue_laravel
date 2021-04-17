@@ -19,6 +19,6 @@ class SpaController extends Controller
 
     public function Login(Request $request): array
     {
-        return ['account' => $request->userId, 'token' => 'server token'];
+        return ['account' => $request->account, 'token' => 'server token'];
     }
 }

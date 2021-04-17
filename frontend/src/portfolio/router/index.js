@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 
 // compornent
 import Login from '@/portfolio/views/Login.vue'
+import Register from '@/portfolio/views/Register.vue'
 import Home from '@/portfolio/views/Home.vue'
 import Next from '@/portfolio/views/Next.vue'
 
@@ -12,6 +13,7 @@ import Store from '@/portfolio/store/index.js'
 
 const routes = [
     {path: '/portfolio', component: Login},
+    {path: '/portfolio/register', component: Register, meta: { requiresAuth: true }},
     {path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
     {path: '/portfolio/next', component: Next, meta: { requiresAuth: true }},
     {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')}

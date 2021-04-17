@@ -1,11 +1,11 @@
 const state = {
-    userId: "",
+    userName: "",
     userToken: ""
 }
 
 const getters = {
-    UserId(state) {
-        return state.userId
+    UserName(state) {
+        return state.userName
     },
     UserToken(state) {
         return state.userToken
@@ -14,8 +14,8 @@ const getters = {
 
 const mutations = {
     updateUser(state, user) {
-        state.userId = user.userId
-        state.userToken = user.userToken
+        state.userId = user.account
+        state.userToken = user.token
     }
 }
 
