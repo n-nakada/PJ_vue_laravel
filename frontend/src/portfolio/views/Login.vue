@@ -69,9 +69,13 @@ export default {
                 })
                 if (this.$router.query) {
                     this.$router.push(this.$router.query.redirect)
-                } else {
-                    var url = new URL(window.location.href)
+                    return
+                }
+                var url = new URL(window.location.href)
+                if (url.query) {
                     this.$router.push({ path: url.searchParams.get('redirect') })
+                } else {
+                    this.$router.push({ path: '/portfolio/home' })
                 }
             })
         }
