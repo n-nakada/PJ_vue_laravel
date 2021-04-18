@@ -33,7 +33,7 @@
                     @click:append="showPassword = !showPassword"
                 />
                 <v-text-field
-                    v-model="account.confirm"
+                    v-model="account.password_confirmation"
                     :type="showConfirm ? 'text' : 'password'"
                     label="Confirm Password"
                     prepend-icon="mdi-checkbox-marked-circle"
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-//import axios from "axios"
+import axios from "axios"
 export default {
     name: 'Register',
     data() {
@@ -68,8 +68,14 @@ export default {
     },
     methods: {
         doRegist() {
-            console.log(this.account)
-            console.log('regist!')
+            axios.post('/api/auth/register', {
+                name: this.account.name,
+                email: this.account.email,
+                password: this.account.password,
+                password_confirmation: this.account.password_confirmation
+            }).then(response => {
+                console.log(response)
+            })
         }
     }
 };

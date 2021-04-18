@@ -18,6 +18,18 @@
                 mdi-heart
             </v-icon>
         </v-btn>
+        <v-btn
+            class="mx-2"
+            fab
+            dark
+            small
+            color="indigo"
+            @click="regist"
+        >
+            <v-icon dark>
+                mdi-plus
+            </v-icon>
+        </v-btn>
     </div>
 </template>
 
@@ -41,6 +53,9 @@ export default {
     methods: {
         next() {
             this.$router.push({ path: "/portfolio/next" })
+        },
+        regist() {
+            this.$router.push({ path: "/portfolio/register" })
         },
         fetchHello() {
             const uri = ""
