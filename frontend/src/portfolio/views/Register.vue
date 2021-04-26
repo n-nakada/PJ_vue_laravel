@@ -6,7 +6,7 @@
         <v-img
             class="white--text align-end"
             height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            :src="require('@/portfolio/assets/register_header.jpg')"
         >
             <v-card-title>
                 <h1 class="display-1">アカウント登録</h1>
