@@ -50,7 +50,7 @@
                         :rules="{
                             required: true,
                             min: 8,
-                            regex: '^.*((?=.*[A-Za-z])(?=.*[0-9])|(?=.*[A-Za-z])(?=.*[!_@])|(?=.*[0-9])(?=.*[!_@])).*$'
+                            regex: '^.*((?=.*[A-Za-z])(?=.*[0-9])|(?=.*[A-Za-z])(?=.*[!_@])|(?=.*[0-9])(?=.*[!_.@])).*$'
                         }"
                     >
                         <v-text-field
@@ -99,38 +99,16 @@
 
 <script>
 import axios from "axios"
+import con from "../const"
 import { required, email, min, max, regex, confirmed } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 setInteractionMode('eager')
-extend('required', {
-    ...required,
-    message: '{_field_} は入力必須です',
-})
-
-extend('min', {
-    ...min,
-    message: '{_field_} は {length} 文字以上で入力してください',
-})
-
-extend('max', {
-    ...max,
-    message: '{_field_} は {length} 文字以内で入力してください',
-})
-
-extend('regex', {
-    ...regex,
-    message: '{_field_} は半角全角英字・半角数字・記号（@_!）のうち2種類以上を組み合わせて入力してください',
-})
-
-extend('email', {
-    ...email,
-    message: 'メールアドレス形式で入力してください',
-})
-
-extend('confirmed', {
-    ...confirmed,
-    message: 'パスワードと同一の値を再入力してください',
-})
+extend('required', { ...required, message: con.VALIDATE_REQUIRED })
+extend('min', { ...min, message: con.VALIDATE_MIN })
+extend('max', { ...max, message: con.VALIDATE_MAX })
+extend('regex', { ...regex, message: con.VALIDATE_REGEX })
+extend('email', { ...email, message: con.VALIDATE_EMAIL })
+extend('confirmed', { ...confirmed, message: con.VALIDATE_CONFIRMED })
 
 export default {
     name: 'Register',
@@ -158,9 +136,8 @@ export default {
             })
         }
     }
-};
+}
 </script>
 
 <style>
 </style>
-
