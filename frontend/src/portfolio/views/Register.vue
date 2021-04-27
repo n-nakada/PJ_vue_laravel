@@ -50,7 +50,7 @@
                         :rules="{
                             required: true,
                             min: 8,
-                            regex: '^.*((?=.*[A-Za-z])(?=.*[0-9])|(?=.*[A-Za-z])(?=.*[!_@])|(?=.*[0-9])(?=.*[!_.@])).*$'
+                            regex: '^.*((?=.*[A-Za-z])(?=.*[0-9])|(?=.*[A-Za-z])(?=.*[!_.@])|(?=.*[0-9])(?=.*[!_.@])).*$'
                         }"
                     >
                         <v-text-field
@@ -131,8 +131,8 @@ export default {
                 email: this.account.email,
                 password: this.account.password,
                 password_confirmation: this.account.password_confirmation
-            }).then(response => {
-                console.log(response)
+            }).catch(() => {
+                alert('バリデートエラー')
             })
         }
     }
