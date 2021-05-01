@@ -28,7 +28,6 @@
                             :counter="20"
                             :error-messages="errors"
                             label="Name"
-                            required
                             prepend-icon="mdi-account-circle"
                         />
                     </validation-provider>
@@ -41,9 +40,9 @@
                             v-model="account.email"
                             :error-messages="errors"
                             label="E-Mail"
-                            required
                             prepend-icon="mdi-email"
                         />
+                    </validation-provider>
                     <validation-provider
                         v-slot="{ errors }"
                         name="Password"
@@ -57,7 +56,6 @@
                             v-model="account.password"
                             :error-messages="errors"
                             label="Password"
-                            required
                             :type="showPassword ? 'text' : 'password'"
                             prepend-icon="mdi-lock"
                             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -73,7 +71,6 @@
                             v-model="account.password_confirmation"
                             :error-messages="errors"
                             label="Confirm Password"
-                            required
                             :type="showConfirm ? 'text' : 'password'"
                             prepend-icon="mdi-checkbox-marked-circle"
                             :append-icon="showConfirm ? 'mdi-eye' : 'mdi-eye-off'"
@@ -90,6 +87,11 @@
                             <v-icon left>mdi-database-plus</v-icon>
                             登録
                         </v-btn>
+                        <ErrorDialog
+                            :dialog="dialog"
+                            :messages="validateMessages"
+                            @result="dialogResponse"
+                        />
                     </v-card-actions>
                 </form>
             </validation-observer>
@@ -102,6 +104,8 @@ import axios from "axios"
 import con from "../const"
 import { required, email, min, max, regex, confirmed } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import ErrorDialog from '../components/global/ErrorDialog'
+
 setInteractionMode('eager')
 extend('required', { ...required, message: con.VALIDATE_REQUIRED })
 extend('min', { ...min, message: con.VALIDATE_MIN })
@@ -115,12 +119,15 @@ export default {
     components: {
         ValidationProvider,
         ValidationObserver,
+        ErrorDialog
     },
     data() {
         return {
             showPassword: false,
             showConfirm: false,
-            account: {}
+            account: {},
+            dialog: false,
+            validateMessages: ''
         }
     },
     methods: {
@@ -131,9 +138,17 @@ export default {
                 email: this.account.email,
                 password: this.account.password,
                 password_confirmation: this.account.password_confirmation
-            }).catch(() => {
-                alert('バリデートエラー')
+            }).catch((e) => {
+                var msg = ''
+                e.response.data.errorMessages.forEach(function(el) {
+                    msg += el + "\n"
+                })
+                this.dialog = true
+                this.validateMessages = msg
             })
+        },
+        dialogResponse() {
+            this.dialog = false
         }
     }
 }
