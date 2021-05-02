@@ -17,14 +17,17 @@
                 ref="observer"
                 v-slot="{ invalid }"
             >
-                <form @submit.prevent="submit">
+                <form
+                    ref="form"
+                    @submit.prevent="submit"
+                >
                     <validation-provider
                         v-slot="{ errors }"
                         name="Name"
                         rules="required|max: 20"
                     >
                         <v-text-field
-                            v-model="account.name"
+                            v-model="account.Name"
                             :counter="20"
                             :error-messages="errors"
                             label="Name"
@@ -33,13 +36,13 @@
                     </validation-provider>
                     <validation-provider
                         v-slot="{ errors }"
-                        name="E-Mail"
+                        name="Email"
                         rules="required|email|max: 255"
                     >
                         <v-text-field
-                            v-model="account.email"
+                            v-model="account.Email"
                             :error-messages="errors"
-                            label="E-Mail"
+                            label="Email"
                             prepend-icon="mdi-email"
                         />
                     </validation-provider>
@@ -53,7 +56,7 @@
                         }"
                     >
                         <v-text-field
-                            v-model="account.password"
+                            v-model="account.Password"
                             :error-messages="errors"
                             label="Password"
                             :type="showPassword ? 'text' : 'password'"
@@ -68,7 +71,7 @@
                         rules="required|confirmed:Password"
                     >
                         <v-text-field
-                            v-model="account.password_confirmation"
+                            v-model="account.Password_confirmation"
                             :error-messages="errors"
                             label="Confirm Password"
                             :type="showConfirm ? 'text' : 'password'"
@@ -88,9 +91,14 @@
                             登録
                         </v-btn>
                         <ErrorDialog
-                            :dialog="dialog"
+                            :dialog="errorDialog"
                             :messages="validateMessages"
-                            @result="dialogResponse"
+                            @result="errorDialogResponse"
+                        />
+                        <ConfirmDialog
+                            :dialog="confirmDialog"
+                            :messages="finishMessage"
+                            @result="confirmDialogResponse"
                         />
                     </v-card-actions>
                 </form>
@@ -105,6 +113,7 @@ import con from "../const"
 import { required, email, min, max, regex, confirmed } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 import ErrorDialog from '../components/global/ErrorDialog'
+import ConfirmDialog from '../components/global/ConfirmDialog'
 
 setInteractionMode('eager')
 extend('required', { ...required, message: con.VALIDATE_REQUIRED })
@@ -119,36 +128,46 @@ export default {
     components: {
         ValidationProvider,
         ValidationObserver,
-        ErrorDialog
+        ErrorDialog,
+        ConfirmDialog
     },
     data() {
         return {
             showPassword: false,
             showConfirm: false,
             account: {},
-            dialog: false,
-            validateMessages: ''
+            errorDialog: false,
+            confirmDialog: false,
+            validateMessages: '',
+            finishMessage: ''
         }
     },
     methods: {
         submit() {
             this.$refs.observer.validate()
             axios.post('/api/auth/register', {
-                name: this.account.name,
-                email: this.account.email,
-                password: this.account.password,
-                password_confirmation: this.account.password_confirmation
+                Name: this.account.Name,
+                Email: this.account.Email,
+                Password: this.account.Password,
+                Password_confirmation: this.account.Password_confirmation
+            }).then(response => {
+                this.finishMessage = 'Name「' + response.data.name + '」の登録が完了しました。'
+                this.confirmDialog = true
+                this.$refs.form.reset()
             }).catch((e) => {
                 var msg = ''
                 e.response.data.errorMessages.forEach(function(el) {
                     msg += el + "\n"
                 })
-                this.dialog = true
                 this.validateMessages = msg
+                this.errorDialog = true
             })
         },
-        dialogResponse() {
-            this.dialog = false
+        errorDialogResponse() {
+            this.errorDialog = false
+        },
+        confirmDialogResponse() {
+            this.confirmDialog = false
         }
     }
 }

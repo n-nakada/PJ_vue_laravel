@@ -20,9 +20,9 @@ class UserRegisterService
         DB::beginTransaction();
         try {
             $user = User::create([
-                'name'     => $data['name'],
-                'email'    => $data['email'],
-                'password' => Hash::make($data['password']),
+                'name'     => $data['Name'],
+                'email'    => $data['Email'],
+                'password' => Hash::make($data['Password']),
             ]);
             DB::commit();
             return $user;

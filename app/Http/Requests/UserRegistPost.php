@@ -27,10 +27,10 @@ class UserRegistPost extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'password_confirmation' => ['required'],
+            'Name' => ['required', 'string', 'max:20', 'unique:users'],
+            'Email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'Password' => ['required', 'string', 'min:8', 'confirmed'],
+            'Password_confirmation' => ['required'],
         ];
     }
 }
