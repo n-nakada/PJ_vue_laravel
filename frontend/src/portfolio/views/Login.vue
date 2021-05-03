@@ -17,7 +17,7 @@
                 <v-text-field
                     v-model="account.email"
                     label="Email"
-                    prepend-icon="mdi-account-circle"
+                    prepend-icon="mdi-email"
                 />
                 <v-text-field
                     v-model="account.password"
