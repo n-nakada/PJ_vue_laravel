@@ -33,6 +33,10 @@ return [
     |
     | Supported: "session", "token"
     |
+    | ChangeLog: 20210503 add
+    |  - api driver default value: token
+    |    install jwt. token -> jwt
+    |
     */
 
     'guards' => [
@@ -42,7 +46,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
         ],

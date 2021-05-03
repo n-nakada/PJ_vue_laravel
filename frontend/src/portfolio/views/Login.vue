@@ -15,8 +15,8 @@
         <v-card-text>
             <v-form>
                 <v-text-field
-                    v-model="account.name"
-                    label="Name"
+                    v-model="account.email"
+                    label="Email"
                     prepend-icon="mdi-account-circle"
                 />
                 <v-text-field
@@ -55,17 +55,14 @@ export default {
     props: {
         source: String
     },
-    created() {
-        this.$store.dispatch('init')
-    },
     methods: {
         doLogin() {
             axios.post('/api/login', {
-                account: this.account
+                email: this.account.email,
+                password: this.account.password
             }).then(response => {
                 this.$store.dispatch('auth', {
-                    account: response.data.account,
-                    token: response.data.token
+                    token: response.data
                 })
                 if (this.$router.query) {
                     this.$router.push(this.$router.query.redirect)

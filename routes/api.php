@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+/* JWT認証導入 */
+Route::group(["middleware" => "api"], function () {
+    // 認証不要
+    Route::post('login', 'App\Http\Controllers\Api\Auth\LoginController@login');
+    Route::post('auth/register', 'App\Http\Controllers\Api\Auth\RegisterController@register');
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        // 認証必要
+        Route::post('logout', 'App\Http\Controllers\Api\Auth\LoginController@logout');
+    });
 });
 
-Route::post('login', 'App\Http\Controllers\Applications\PortfolioController@Login');
-Route::post('auth/register', 'App\Http\Controllers\Api\Auth\RegisterController@register');

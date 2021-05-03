@@ -11,9 +11,4 @@ class PortfolioController extends Controller
     {
         return view('spa/portfolio');
     }
-
-    public function Login(Request $request): array
-    {
-        return ['account' => $request->account, 'token' => 'server token'];
-    }
 }

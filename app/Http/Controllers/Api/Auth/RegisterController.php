@@ -28,7 +28,7 @@ class RegisterController extends Controller
      * @param  UserRegistPost
      * @return JsonResponse
      */
-    public function register(UserRegistPost $request)
+    public function register(UserRegistPost $request): JsonResponse
     {
         event(
             new Registered(

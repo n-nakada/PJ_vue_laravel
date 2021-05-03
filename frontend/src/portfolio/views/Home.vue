@@ -30,11 +30,23 @@
                 mdi-plus
             </v-icon>
         </v-btn>
+        <v-btn
+            class="mx-2"
+            fab
+            dark
+            small
+            color="teal"
+            @click="logout"
+        >
+            <v-icon dark>
+                mdi-logout
+            </v-icon>
+        </v-btn>
     </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import axios from "axios"
 import HelloWorld from '@/portfolio/components/HelloWorld.vue'
 
 export default {
@@ -57,6 +69,14 @@ export default {
         regist() {
             this.$router.push({ path: "/portfolio/register" })
         },
+        logout() {
+            axios.post('/api/logout', {
+                token: this.$store.getters.UserToken
+            }).then(response => {
+                this.$store.dispatch('init')
+                this.$router.push({ path: '/portfolio' })
+            })
+        },
         fetchHello() {
             const uri = ""
             this.axios.get(uri).then(response => {
@@ -66,3 +86,4 @@ export default {
     }
 }
 </script>
+
