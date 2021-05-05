@@ -1,0 +1,6 @@
+{
+    "extends": ['vue', 'plugin:vue/recommended'],
+    "rules": {
+        "no-unused-vars":"off"
+    }
+}

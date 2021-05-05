@@ -15,24 +15,41 @@
                 </v-list-item>
                 <v-divider></v-divider>
                 <v-list dense nav>
-                    <v-list-group
-                        v-for="nav_list in nav_lists"
-                        :key="nav_list.name"
-                        :prepend-icon="nav_list.icon"
-                        no-action
-                        :append-icon="nav_list.lists ? undefined : ''"
-                    >
-                        <template v-slot:activator>
+                    <template v-for="nav_list in nav_lists">
+                        <v-list-item
+                            v-if="!nav_list.lists"
+                            :to="nav_list.link"
+                            :key="nav_list.name"
+                            @click="menu_close"
+                        >
+                            <v-list-item-icon>
+                                <v-icon>{{ nav_list.icon }}</v-icon>
+                            </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title>{{ nav_list.name }}</v-list-item-title>
                             </v-list-item-content>
-                        </template>
-                        <v-list-item v-for="list in nav_list.lists" :key="list">
-                            <v-list-item-content>
-                                <v-list-item-title>{{ list }}</v-list-item-title>
-                            </v-list-item-content>
                         </v-list-item>
-                    </v-list-group>
+                        <v-list-group
+                            v-else
+                            no-action
+                            :prepend-icon="nav_list.icon"
+                            :key="nav_list.name"
+                            v-model="nav_list.active"
+                        >
+                            <template v-slot:activator>
+                                <v-list-item-content>
+                                    <v-list-item-title>{{ nav_list.name }}</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                            <v-list-item
+                                v-for="list in nav_list.lists"
+                                :key="list.name"
+                                :to="list.link"
+                            >
+                                <v-list-item-title>{{ list.name }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list-group>
+                    </template>
                 </v-list>
             </v-container>
         </v-navigation-drawer>
@@ -74,7 +91,9 @@
                 </v-menu>
             </v-toolbar-items>
         </v-app-bar>
-        <router-view />
+        <v-main>
+            <router-view />
+        </v-main>
         <v-footer
             color="grey darken-3"
             dark
@@ -97,40 +116,61 @@ export default {
                 { name: 'Report a bug', icon: 'mdi-bug' },
                 { name: 'Github issue board', icon: 'mdi-github' },
                 { name: 'Stack overview', icon: 'mdi-stack-overflow' },
-                { name: 'Logout', icon: 'mdi-logout' }
+                { name: 'Logout', icon: 'mdi-logout', click: 'logout' }
             ],
             nav_lists: [{
+                name: 'Dashboard',
+                icon: 'mdi-view-dashboard',
+                link: '/portfolio/home'
+            },{
                 name: 'Getting Started',
-                icon: 'mdi-vuetify',
-                lists: [
-                    'Quick Start',
-                    'Pre-made layouts'
-                ]
+                icon: 'mdi-speedometer',
+                active: false,
+                link: '',
+                lists: [{
+                    name: 'Quick Start',
+                    link: '/portfolio/register'
+                },{
+                    name: 'Pre-made layouts',
+                    link: '/portfolio/next'
+                }]
             },{
                 name: 'Customization',
-                icon: 'mdi-cogs'
+                icon: 'mdi-cogs',
+                link: ''
             },{
                 name: 'Styles & animations',
                 icon: 'mdi-palette',
-                lists: [
-                    'Colors',
-                    'Content',
-                    'Display'
-                ]
+                link: '',
+                active: false,
+                lists: [{
+                    name: 'Colors',
+                    link: '/portfolio/home'
+                },{
+                    name: 'Content',
+                    link: '/portfolio/next'
+                },{
+                    name: 'Display',
+                    link: 'portfolio/register'
+                }]
             },{
                 name: 'UI Components',
                 icon: 'mdi-view-dashboard',
-                lists: [
-                    'API explorer',
-                    'Alerts'
-                ]
+                link: '/portfolio/home'
             },{
                 name: 'Directives',
-                icon: 'mdi-function'
+                icon: 'mdi-function',
+                link: '/portfolio/next'
             },{
                 name: 'Preminum themes',
-                icon: 'mdi-vuetify'
+                icon: 'mdi-vuetify',
+                link: '/portfolio/register'
             }]
+        }
+    },
+    methods: {
+        menu_close() {
+            this.nav_lists.forEach(nav_list => nav_list.active = false)
         }
     }
 }

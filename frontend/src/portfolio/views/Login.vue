@@ -1,7 +1,7 @@
 <template>
     <v-card
         width="400px"
-        class="mx-auto mt-5"
+        class="mx-auto my-5"
     >
         <v-img
             class="white--text align-end"
@@ -36,6 +36,11 @@
                         <v-icon left>mdi-login</v-icon>
                        ログイン
                     </v-btn>
+                    <ErrorDialog
+                        :dialog="errorDialog"
+                        :messages="errorMessages"
+                        @result="errorDialogResponse"
+                    />
                 </v-card-actions>
             </v-form>
         </v-card-text>
@@ -44,12 +49,18 @@
 
 <script>
 import axios from "axios"
+import ErrorDialog from '../components/global/ErrorDialog'
 export default {
     name: 'Login',
+    components: {
+        ErrorDialog
+    },
     data() {
         return {
             showPassword: false,
-            account: {}
+            account: {},
+            errorDialog: false,
+            errorMessages: ''
         }
     },
     props: {
@@ -74,7 +85,13 @@ export default {
                 } else {
                     this.$router.push({ path: '/portfolio/home' })
                 }
+            }).catch((e) => {
+                this.errorMessages = 'アカウントが正しくありません。'
+                this.errorDialog = true
             })
+        },
+        errorDialogResponse() {
+            this.errorDialog = false
         }
     }
 }

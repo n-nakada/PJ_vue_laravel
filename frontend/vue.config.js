@@ -3,7 +3,6 @@ module.exports = {
     outputDir: '../public/app',
     // app配下にjs,css等が置かれるのでpublicPathを調整
     publicPath: '/app',
-
     // portfolio
     pages: {
         // portfolioのエントリポイント、テンプレート、出力先
@@ -13,4 +12,8 @@ module.exports = {
             filename: '../../resources/views/spa/portfolio.blade.php',
         },
     },
+    // eslint無効化
+    chainWebpack: config => {
+        config.module.rules.delete('eslint');
+    }
 };

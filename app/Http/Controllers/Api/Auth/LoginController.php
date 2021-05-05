@@ -28,7 +28,7 @@ class LoginController extends Controller
             'password'  =>  $request->get('password'),
         ]);
         if (!$token) {
-            return new JsonResponse(__('auth.failed'));
+            return new JsonResponse(['error' => 'Unauthorized'], 401);
         }
         return new JsonResponse($token);
     }
