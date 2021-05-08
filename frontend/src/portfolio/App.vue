@@ -79,6 +79,7 @@
                         <v-list-item
                             v-for="support in supports"
                             :key="support.name"
+                            @click="support.click"
                         >
                             <v-list-item-icon>
                                 <v-icon>{{ support.icon }}</v-icon>
@@ -93,6 +94,16 @@
         </v-app-bar>
         <v-main>
             <router-view />
+            <ErrorDialog
+                :dialog="errorDialog"
+                :messages="dialogMessages"
+                @result="errorDialogResponse"
+            />
+            <ConfirmDialog
+                :dialog="confirmDialog"
+                :messages="dialogMessages"
+                @result="confirmDialogResponse"
+            />
         </v-main>
         <v-footer
             color="grey darken-3"
@@ -105,18 +116,29 @@
 </template>
 
 <script>
+import axios from "axios"
+import ErrorDialog from "@/portfolio/components/global/ErrorDialog"
+import ConfirmDialog from "@/portfolio/components/global/ConfirmDialog"
+
 export default {
     name: 'App',
+    components: {
+        ErrorDialog,
+        ConfirmDialog
+    },
     data() {
         return {
             drawer: null,
+            dialogMessages: '',
+            errorDialog: false,
+            confirmDialog: false,
             supports: [
                 { name: 'Consulting and suppourt', icon: 'mdi-vuetify' },
                 { name: 'Discord community', icon: 'mdi-discord' },
                 { name: 'Report a bug', icon: 'mdi-bug' },
                 { name: 'Github issue board', icon: 'mdi-github' },
                 { name: 'Stack overview', icon: 'mdi-stack-overflow' },
-                { name: 'Logout', icon: 'mdi-logout', click: 'logout' }
+                { name: 'Logout', icon: 'mdi-logout', click: this.logout }
             ],
             nav_lists: [{
                 name: 'Dashboard',
@@ -171,6 +193,29 @@ export default {
     methods: {
         menu_close() {
             this.nav_lists.forEach(nav_list => nav_list.active = false)
+        },
+        logout() {
+            axios.post('/api/logout', {
+                token: this.$store.getters.UserToken
+            }).then(response => {
+                this.$store.dispatch('init')
+                this.dialogMessages = 'ログアウトしました。'
+                this.confirmDialog = true
+            }).catch((e) => {
+                this.$store.dispatch('init')
+                this.dialogMessages = 'ログイン期限切れです。'
+                this.errorDialog = true
+            })
+        },
+        errorDialogResponse() {
+            this.errorDialog = false
+            if (this.$route.path !== '/portfolio') {
+                this.$router.push({ path: '/portfolio' })
+            }
+        },
+        confirmDialogResponse() {
+            this.confirmDialog = false
+            this.$router.push({ path: '/portfolio' })
         }
     }
 }
