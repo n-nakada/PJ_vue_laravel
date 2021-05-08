@@ -1,5 +1,5 @@
 <template>
-    <div class="home" style="text-align: center">
+    <div class="home my-5" style="text-align: center">
         <h3>welcome {{ user }}</h3>
         <p>{{ message }}</p>
         <div class="">

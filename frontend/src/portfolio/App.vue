@@ -2,13 +2,17 @@
     <v-app>
         <v-navigation-drawer
             app
+            dark
             v-model="drawer"
-            clipped
+            temporary
+            v-show="showHeaderFooter"
         >
             <v-container>
                 <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title class="title grey--text text--darken-2">
+                        <v-list-item-title
+                            class="title grey--text text--darken-2"
+                        >
                             Navigation lists
                         </v-list-item-title>
                     </v-list-item-content>
@@ -58,9 +62,13 @@
             dark
             app
             clipped-left
+            v-show="showHeaderFooter"
         >
             <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
-            <v-toobar-title>Laravel＋Vue ポートフォリオ</v-toobar-title>
+            <v-toobar-title>
+                <span class="pink--text text--lighten-3 font-weight-bold">Ping</span>
+                <span class="light-blue--text font-weight-bold">Block</span>
+            </v-toobar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
                 <v-menu offset-y>
@@ -70,7 +78,6 @@
                             text
                         >
                             <v-icon class="mr-1">mdi-account-circle</v-icon>
-                            プロファイル
                             <v-icon>mdi-menu-down</v-icon>
                         </v-btn>
                     </template>
@@ -109,8 +116,10 @@
             color="grey darken-3"
             dark
             app
+            v-show="showHeaderFooter"
         >
-            Laravel＋Vue ポートフォリオ
+            <span class="pink--text text--lighten-3 font-weight-bold">Ping</span>
+            <span class="light-blue--text font-weight-bold">Block</span>
         </v-footer>
     </v-app>
 </template>
@@ -126,20 +135,42 @@ export default {
         ErrorDialog,
         ConfirmDialog
     },
+    watch: {
+        '$route': function(to, from) {
+            if (to.path === '/portfolio') {
+                this.showHeaderFooter = false
+            } else {
+                this.showHeaderFooter = true
+            }
+        }
+    },
     data() {
         return {
             drawer: null,
+            showHeaderFooter: (this.$route.path === '/portfolio') ? false : true,
             dialogMessages: '',
             errorDialog: false,
             confirmDialog: false,
-            supports: [
-                { name: 'Consulting and suppourt', icon: 'mdi-vuetify' },
-                { name: 'Discord community', icon: 'mdi-discord' },
-                { name: 'Report a bug', icon: 'mdi-bug' },
-                { name: 'Github issue board', icon: 'mdi-github' },
-                { name: 'Stack overview', icon: 'mdi-stack-overflow' },
-                { name: 'Logout', icon: 'mdi-logout', click: this.logout }
-            ],
+            supports: [{
+                name: 'Consulting and suppourt',
+                icon: 'mdi-vuetify'
+            },{
+                name: 'Discord community',
+                icon: 'mdi-discord'
+            },{
+                name: 'Report a bug',
+                icon: 'mdi-bug'
+            },{
+                name: 'Github issue board',
+                icon: 'mdi-github'
+            },{
+                name: 'Stack overview',
+                icon: 'mdi-stack-overflow'
+            },{
+                name: 'Logout',
+                icon: 'mdi-logout',
+                click: this.logout
+            }],
             nav_lists: [{
                 name: 'Dashboard',
                 icon: 'mdi-view-dashboard',
