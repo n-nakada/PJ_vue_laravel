@@ -66,8 +66,8 @@
         >
             <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
             <v-toobar-title>
-                <span class="pink--text text--lighten-3 font-weight-bold">Ping</span>
-                <span class="light-blue--text font-weight-bold">Block</span>
+                <span class="blue-grey--text text--lighten-5 font-weight-bold">dot</span>
+                <span class="light-blue--text font-weight-bold">assets</span>
             </v-toobar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
@@ -82,17 +82,25 @@
                         </v-btn>
                     </template>
                     <v-list>
-                        <v-subheader>Get help</v-subheader>
+                        <v-subheader>User Info</v-subheader>
                         <v-list-item
                             v-for="support in supports"
                             :key="support.name"
-                            @click="support.click"
                         >
                             <v-list-item-icon>
                                 <v-icon>{{ support.icon }}</v-icon>
                             </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title>{{ support.name }}</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item @click="logout">
+                            <v-list-item-icon>
+                                <v-icon>mdi-logout</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>logout</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list>
@@ -118,8 +126,10 @@
             app
             v-show="showHeaderFooter"
         >
-            <span class="pink--text text--lighten-3 font-weight-bold">Ping</span>
-            <span class="light-blue--text font-weight-bold">Block</span>
+            <span>©</span>
+            <span class="mx-1">{{ new Date().getFullYear() }}</span>
+            <span class="blue-grey--text text--lighten-5">dot</span>
+            <span class="light-blue--text">assets</span>
         </v-footer>
     </v-app>
 </template>
@@ -166,10 +176,6 @@ export default {
             },{
                 name: 'Stack overview',
                 icon: 'mdi-stack-overflow'
-            },{
-                name: 'Logout',
-                icon: 'mdi-logout',
-                click: this.logout
             }],
             nav_lists: [{
                 name: 'Dashboard',
