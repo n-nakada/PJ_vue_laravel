@@ -76,9 +76,10 @@
             v-show="showHeaderFooter"
         >
             <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
-            <v-toobar-title>
-                <span class="pink--text text--lighten-3">Load</span>
-                <span class="light-blue--text">Asset</span>
+            <v-toobar-title
+                class="font-weight-light text-h7"
+                v-text="name"
+            >
             </v-toobar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
@@ -156,6 +157,7 @@
 import axios from "axios"
 import ErrorDialog from "@/portfolio/components/global/ErrorDialog"
 import ConfirmDialog from "@/portfolio/components/global/ConfirmDialog"
+import '@/portfolio/styles/overrides.sass'
 
 export default {
     name: 'App',
@@ -209,7 +211,7 @@ export default {
                     link: '/portfolio/register'
                 },{
                     name: 'Pre-made layouts',
-                    link: '/portfolio/next'
+                    link: '/portfolio/usersview'
                 }]
             },{
                 name: 'Customization',
@@ -243,6 +245,11 @@ export default {
                 icon: 'mdi-vuetify',
                 link: '/portfolio/register'
             }]
+        }
+    },
+    computed: {
+        name() {
+            return this.$route.name
         }
     },
     methods: {
