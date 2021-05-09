@@ -40,7 +40,7 @@
       <div
         v-if="hasTitle"
         :class="fullHeader ? 'pt-4' : 'pl-3'"
-        class="text-h4 v-card--material__title"
+        class="text-h5 v-card--material__title"
       >
         <slot name="title" />
 
@@ -107,10 +107,10 @@ export default {
 </script>
 
 <style lang="sass">
-  .v-card.v-card--material
+.v-card.v-card--material
     > .v-card__title
-      > .v-card--material__title
-        flex: 1 1 auto
-        word-break: break-word
+        > .v-card--material__title
+            flex: 1 1 auto
+            word-break: break-word
 </style>
 
