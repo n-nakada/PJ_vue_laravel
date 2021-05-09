@@ -1,19 +1,30 @@
 <template>
     <v-app>
         <v-navigation-drawer
+            v-model="drawer"
             app
             dark
-            v-model="drawer"
             temporary
+            :src="require('@/portfolio/assets/sidebar.jpg')"
             v-show="showHeaderFooter"
         >
+            <template #img="props">
+                <v-img
+                    gradient="rgba(0,0,0,.7), rgba(0,0,0,.7)"
+                    v-bind="props"
+                />
+            </template>
             <v-container>
-                <v-list-item>
-                    <v-list-item-content>
-                        <v-list-item-title
-                            class="title grey--text text--darken-2"
-                        >
-                            Navigation lists
+                <v-list-item class="mb-0 justify-space-between pl-3">
+                    <v-list-item-avatar>
+                        <v-img
+                            :src="require('@/portfolio/assets/vmd.svg')"
+                        />
+                    </v-list-item-avatar>
+                    <v-list-item-content class="pl-2">
+                        <v-list-item-title class="text-h5">
+                            <strong class="font-weight-black pink--text text--lighten-3">Load</strong>
+                            <strong class="font-weight-black light-blue--text">Asset</strong>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -66,8 +77,8 @@
         >
             <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
             <v-toobar-title>
-                <span class="blue-grey--text text--lighten-5 font-weight-bold">dot</span>
-                <span class="light-blue--text font-weight-bold">assets</span>
+                <span class="pink--text text--lighten-3">Load</span>
+                <span class="light-blue--text">Asset</span>
             </v-toobar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
@@ -124,12 +135,19 @@
             color="grey darken-3"
             dark
             app
+            padless
+            absolute
             v-show="showHeaderFooter"
         >
-            <span>©</span>
-            <span class="mx-1">{{ new Date().getFullYear() }}</span>
-            <span class="blue-grey--text text--lighten-5">dot</span>
-            <span class="light-blue--text">assets</span>
+            <v-row
+                justify="center"
+                no-gutters
+            >
+                <span>©</span>
+                <span class="mx-1">{{ new Date().getFullYear() }}</span>
+                <span class="pink--text text--lighten-3">Load</span>
+                <span class="light-blue--text">Asset</span>
+            </v-row>
         </v-footer>
     </v-app>
 </template>
