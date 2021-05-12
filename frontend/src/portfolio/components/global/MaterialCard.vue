@@ -1,13 +1,13 @@
 <template>
 <!--
-    <AppCard
-        v-bind="$attrs"
-        class="v-card--material mt-4"
-    >
--->
     <v-card
         v-bind="$attrs"
         v-on="$listeners"
+        class="v-card--material mt-4"
+    >
+-->
+    <AppCard
+        v-bind="$attrs"
         class="v-card--material mt-4"
     >
         <v-card-title class="align-start">
@@ -67,13 +67,13 @@
             </v-card-actions>
         </template>
 <!--
-    </AppCard>
--->
     </v-card>
+-->
+    </AppCard>
 </template>
 
 <script>
-//import AppCard from './app/Card'
+import AppCard from './app/Card'
 export default {
     name: 'MaterialCard',
     props: {
@@ -86,7 +86,7 @@ export default {
         title: String,
     },
     components: {
-//        AppCard
+        AppCard
     },
     computed: {
         hasHeading () {
@@ -115,12 +115,5 @@ export default {
         > .v-card--material__title
             flex: 1 1 auto
             word-break: break-word
-
-.v-card.v-card--material
-    > .v-card__title
-        > .text-h4
-            font-size: 1.125rem!important
-            font-weight: 300
-            line-height: 1.4em
 </style>
 
