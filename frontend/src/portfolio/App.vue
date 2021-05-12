@@ -23,8 +23,8 @@
                     </v-list-item-avatar>
                     <v-list-item-content class="pl-2">
                         <v-list-item-title class="text-h5">
-                            <strong class="font-weight-black pink--text text--lighten-3">Load</strong>
-                            <strong class="font-weight-black light-blue--text">Asset</strong>
+                            <strong class="font-weight-black pink--text text--lighten-3">Asset</strong>
+                            <strong class="font-weight-black light-blue--text">Loader</strong>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -146,8 +146,8 @@
             >
                 <span>©</span>
                 <span class="mx-1">{{ new Date().getFullYear() }}</span>
-                <span class="pink--text text--lighten-3">Load</span>
-                <span class="light-blue--text">Asset</span>
+                <span class="pink--text text--lighten-3">Asset</span>
+                <span class="light-blue--text">Loader</span>
             </v-row>
         </v-footer>
     </v-app>
@@ -230,7 +230,7 @@ export default {
                     link: '/portfolio/next'
                 },{
                     name: 'Display',
-                    link: 'portfolio/register'
+                    link: '/portfolio/next'
                 }]
             },{
                 name: 'UI Components',
@@ -243,7 +243,7 @@ export default {
             },{
                 name: 'Preminum themes',
                 icon: 'mdi-vuetify',
-                link: '/portfolio/register'
+                link: '/portfolio/simpletable'
             }]
         }
     },

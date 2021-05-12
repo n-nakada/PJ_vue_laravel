@@ -1,71 +1,65 @@
 <template>
     <v-container
-        id="users-view"
+        id="simple-table"
         fluid
         tag="section"
     >
-        <v-row
-            justify="center"
+        <view-intro
+            heading="User Tables"
+            link="components/simple-tables"
+        />
+        <material-card
+            icon="mdi-clipboard-text"
+            icon-small
+            title="Simple Table"
+            color="accent"
         >
-            <v-col
-                cols="12"
-            >
-                <material-card
-                    color="orange"
-                    full-header
-                >
-                    <template #heading>
-                        <div class="pa-8 white--text">
-                            <div class="text-h4 font-weight-light">
-                                UsersView
-                            </div>
-                            <div class="text-caption">
-                                アカウント一覧
-                            </div>
-                        </div>
-                    </template>
-                    <v-card-text>
-                        <v-data-table
-                            :headers="headers"
-                            :items="items"
-                        />
-                    </v-card-text>
-                </material-card>
-            </v-col>
-        </v-row>
+            <v-simple-table>
+                <thead>
+                    <tr>
+                        <th class="primary--text">
+                            ID
+                        </th>
+                        <th class="primary--text">
+                            Name
+                        </th>
+                        <th class="primary--text">
+                            Email
+                        </th>
+                        <th class="primary--text">
+                            CreateAt
+                        </th>
+                        <th class="text-right primary--text">
+                            UpdateAt
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="item in items"
+                        :key="item.id"
+                    >
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.createat }}</td>
+                        <td>{{ item.updateat }}</td>
+                    </tr>
+                </tbody>
+            </v-simple-table>
+        </material-card>
     </v-container>
 </template>
 
 <script>
 import MaterialCard from '../components/global/MaterialCard'
 export default {
-    name: 'UsersView',
+    name: 'SimpleTable',
     components: {
         MaterialCard
     },
     data() {
         return {
-            headers: [{
-                sortable: false,
-                text: 'ID',
-                value: 'id',
-            },{
-                sortable: false,
-                text: 'ユーザ名',
-                value: 'name',
-            },{
-                sortable: false,
-                text: 'Email',
-                value: 'email',
-            },{
-                sortable: false,
-                text: '登録日時',
-                value: 'createat',
-            },{
-                sortable: false,
-                text: '更新日時',
-                value: 'updateat',
-            }],
             items: [{
                 id: 1,
                 name: 'ゲストユーザー',

@@ -8,6 +8,7 @@ import Register from '@/portfolio/views/Register.vue'
 import Usersview from '@/portfolio/views/UsersView.vue'
 import Home from '@/portfolio/views/Home.vue'
 import Next from '@/portfolio/views/Next.vue'
+import SimpleTable from '@/portfolio/views/SimpleTable.vue'
 
 // store
 import Store from '@/portfolio/store/index.js'
@@ -18,6 +19,7 @@ const routes = [
     {name: 'アカウント一覧', path: '/portfolio/usersview', component: Usersview, meta: { requiresAuth: true }},
     {name: 'ダッシュボード', path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
     {name: 'Next', path: '/portfolio/next', component: Next, meta: { requiresAuth: true }},
+    {name: 'シンプルテーブル', path: '/portfolio/simpletable', component: SimpleTable, meta: { requiresAuth: true }},
     {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')}
 ]
 
