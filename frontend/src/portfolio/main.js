@@ -4,7 +4,6 @@ import router from './router'
 import vuetify from '@/portfolio/plugins/vuetify'
 import store from './store'
 import { sync } from 'vuex-router-sync'
-require('@/portfolio/styles/variables.scss')
 
 Vue.config.productionTip = false
 

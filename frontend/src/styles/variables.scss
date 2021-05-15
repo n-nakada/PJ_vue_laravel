@@ -1,5 +1,7 @@
-// reduce button default elevation
-// default background color is #EEEEEE
+/**
+ * vuetify-loaderではsrc直下のstylesを参照するので、
+ * src/stylesに移管
+ */
 
 $btn-sizes: (
   'small': 28,
