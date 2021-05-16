@@ -12,8 +12,14 @@ module.exports = {
             filename: '../../resources/views/spa/portfolio.blade.php',
         },
     },
-    // eslint無効化
+    // eslint
     chainWebpack: config => {
         config.module.rules.delete('eslint');
+    },
+    configureWebpack: {
+        performance: {
+            maxAssetSize: 300000,
+            maxEntrypointSize: 900000,
+        }
     }
 };

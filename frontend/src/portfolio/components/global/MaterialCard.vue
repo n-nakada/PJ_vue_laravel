@@ -1,11 +1,4 @@
 <template>
-<!--
-    <v-card
-        v-bind="$attrs"
-        v-on="$listeners"
-        class="v-card--material mt-4"
-    >
--->
     <AppCard
         v-bind="$attrs"
         class="v-card--material mt-4"
@@ -66,9 +59,6 @@
                 <slot name="actions" />
             </v-card-actions>
         </template>
-<!--
-    </v-card>
--->
     </AppCard>
 </template>
 

@@ -119,8 +119,10 @@
                 </v-menu>
             </v-toolbar-items>
         </v-app-bar>
-        <v-main>
-            <router-view />
+        <v-main class="mb-5">
+            <v-container fluid>
+                <router-view />
+            </v-container>
             <ErrorDialog
                 :dialog="errorDialog"
                 :messages="dialogMessages"
@@ -269,4 +271,13 @@ export default {
 </script>
 
 <style>
+.v-data-table td {
+    background: #f0f8ff;
+}
+.v-data-table tr:nth-child(odd) td {
+    background: #fff;
+}
+.v-data-table tr:hover td {
+    background-color: #eee;
+}
 </style>

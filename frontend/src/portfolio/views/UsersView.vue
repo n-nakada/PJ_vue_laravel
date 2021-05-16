@@ -4,31 +4,68 @@
         fluid
         tag="section"
     >
-        <v-row
-            justify="center"
-        >
-            <v-col
-                cols="12"
-            >
+        <v-row justify="center">
+            <v-col cols="12">
+                <view-intro
+                    heading="アカウント一覧"
+                    sub="You can edit or delete accounts."
+                />
                 <material-card
-                    color="orange"
+                    color="accent"
                     full-header
                 >
                     <template #heading>
                         <div class="pa-8 white--text">
                             <div class="text-h4 font-weight-light">
-                                UsersView
+                                Users State
                             </div>
                             <div class="text-caption">
-                                アカウント一覧
+                                Usersテーブル
                             </div>
                         </div>
                     </template>
+                    <v-card-title>
+                        <v-btn
+                            color="primary"
+                            to="/portfolio/register"
+                        >
+                            <v-icon left>mdi-account-plus</v-icon>
+                            新規登録
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            hide-details
+                        ></v-text-field>
+                    </v-card-title>
                     <v-card-text>
                         <v-data-table
                             :headers="headers"
                             :items="items"
-                        />
+                            :search="search"
+                        >
+                            <template v-slot:item.actions="{ item }">
+                                <v-btn
+                                    color="primary"
+                                    class="mr-3"
+                                    small
+                                    @click="editItem(item)"
+                                >
+                                    <v-icon left>mdi-square-edit-outline</v-icon>
+                                    変更
+                                </v-btn>
+                                <v-btn
+                                    color="secondary"
+                                    small
+                                    @click="deleteItem(item)"
+                                >
+                                    <v-icon left>mdi-delete-forever</v-icon>
+                                    削除
+                                </v-btn>
+                        </v-data-table>
                     </v-card-text>
                 </material-card>
             </v-col>
@@ -38,33 +75,45 @@
 
 <script>
 import MaterialCard from '../components/global/MaterialCard'
+import ViewIntro from '../components/global/ViewIntro'
 export default {
     name: 'UsersView',
     components: {
-        MaterialCard
+        MaterialCard,
+        ViewIntro
     },
     data() {
         return {
+            search: '',
             headers: [{
                 sortable: false,
                 text: 'ID',
                 value: 'id',
+                class: 'blue--text darken-2',
             },{
                 sortable: false,
                 text: 'ユーザ名',
                 value: 'name',
+                class: 'blue--text darken-2',
             },{
                 sortable: false,
                 text: 'Email',
                 value: 'email',
+                class: 'blue--text darken-2',
             },{
                 sortable: false,
                 text: '登録日時',
                 value: 'createat',
+                class: 'blue--text darken-2',
             },{
                 sortable: false,
                 text: '更新日時',
                 value: 'updateat',
+                class: 'blue--text darken-2',
+            },{
+                sortable: false,
+                text: '',
+                value: 'actions',
             }],
             items: [{
                 id: 1,
@@ -127,6 +176,17 @@ export default {
                 createat: '2021-05-11 18:00:00',
                 updateat: '2021-05-12 06:00:00',
             }]
+        }
+    },
+    methods: {
+        editItem(item) {
+            console.log('edit')
+            console.log(item)
+            this.$router.push({ path: '/portfolio/register' })
+        },
+        deleteItem(item) {
+            console.log('delete')
+            console.log(item)
         }
     }
 }
