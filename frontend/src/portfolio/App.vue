@@ -132,24 +132,7 @@
                 @result="confirmDialogResponse"
             />
         </v-main>
-        <v-footer
-            color="grey darken-3"
-            dark
-            app
-            padless
-            absolute
-            v-show="showHeaderFooter"
-        >
-            <v-row
-                justify="center"
-                no-gutters
-            >
-                <span>©</span>
-                <span class="mx-1">{{ new Date().getFullYear() }}</span>
-                <span class="pink--text text--lighten-3">Asset</span>
-                <span class="light-blue--text">Loader</span>
-            </v-row>
-        </v-footer>
+        <Footer :display="showHeaderFooter" />
     </v-app>
 </template>
 
@@ -157,13 +140,15 @@
 import axios from "axios"
 import ErrorDialog from "@/portfolio/components/global/ErrorDialog"
 import ConfirmDialog from "@/portfolio/components/global/ConfirmDialog"
+import Footer from "@/portfolio/components/global/Footer"
 import '@/portfolio/styles/overrides.sass'
 
 export default {
     name: 'App',
     components: {
         ErrorDialog,
-        ConfirmDialog
+        ConfirmDialog,
+        Footer
     },
     watch: {
         '$route': function(to, from) {
