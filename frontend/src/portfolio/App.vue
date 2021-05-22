@@ -5,6 +5,7 @@
             app
             dark
             temporary
+            width="300"
             :src="require('@/portfolio/assets/sidebar.jpg')"
             v-show="showHeaderFooter"
         >
@@ -189,15 +190,15 @@ export default {
                 icon: 'mdi-view-dashboard',
                 link: '/portfolio/home'
             },{
-                name: 'Getting Started',
-                icon: 'mdi-speedometer',
+                name: 'アカウント管理',
+                icon: 'mdi-account-cog',
                 active: false,
                 link: '',
                 lists: [{
-                    name: 'Quick Start',
+                    name: '新規登録',
                     link: '/portfolio/register'
                 },{
-                    name: 'Pre-made layouts',
+                    name: 'アカウント一覧',
                     link: '/portfolio/usersview'
                 }]
             },{
