@@ -60,7 +60,7 @@
                                 <v-btn
                                     color="secondary"
                                     small
-                                    @click="deleteItem(item)"
+                                    @click="get"
                                 >
                                     <v-icon left>mdi-delete-forever</v-icon>
                                     削除
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import MaterialCard from '../components/global/MaterialCard'
 import ViewIntro from '../components/global/ViewIntro'
 export default {
@@ -187,6 +188,15 @@ export default {
         deleteItem(item) {
             console.log('delete')
             console.log(item)
+        },
+        get() {
+            axios.post('api/accountviewer', {
+            }).then(response => {
+                console.log(response)
+            }).catch((e) => {
+                this.errorMessages = 'エラーが発生しました。'
+                this.errorDialog = true
+            })
         }
     }
 }

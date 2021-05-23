@@ -22,6 +22,7 @@ Route::group(["middleware" => "api"], function () {
     Route::group(['middleware' => ['jwt.auth']], function () {
         // 認証必要
         Route::post('logout', 'App\Http\Controllers\Api\Auth\LoginController@logout');
+        Route::post('accountviewer', 'App\Http\Controllers\Api\Portfolio\GetController@getAccountViewer');
     });
 });
 
