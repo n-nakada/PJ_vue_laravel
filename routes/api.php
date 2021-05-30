@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+//use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Portfolio\GetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +18,21 @@ use Illuminate\Support\Facades\Route;
 
 /* JWT認証導入 */
 Route::group(["middleware" => "api"], function () {
+/*
     // 認証不要
     Route::post('login', 'App\Http\Controllers\Api\Auth\LoginController@login');
     Route::post('auth/register', 'App\Http\Controllers\Api\Auth\RegisterController@register');
     Route::group(['middleware' => ['jwt.auth']], function () {
         // 認証必要
         Route::post('logout', 'App\Http\Controllers\Api\Auth\LoginController@logout');
-        Route::post('accountviewer', 'App\Http\Controllers\Api\Portfolio\GetController@getAccountViewer');
+        Route::get('accountviewer', 'App\Http\Controllers\Api\Portfolio\GetController@getAccountViewer');
+    });
+*/
+    Route::post('authenticate', 'App\Http\Controllers\Api\AuthController@authenticate');
+    Route::get('logout',  'App\Http\Controllers\Api\AuthController@logout')->middleware('jwt.refresh');
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        Route::resource('accountviewer', 'GetController@getAccountViewer');
+        Route::get('me', 'App\Http\Controllers\Api\AuthController@getCurrentUser');
     });
 });
 

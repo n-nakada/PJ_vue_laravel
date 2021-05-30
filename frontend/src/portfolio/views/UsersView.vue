@@ -190,13 +190,17 @@ export default {
             console.log(item)
         },
         get() {
-            axios.post('api/accountviewer', {
+console.log(this.$store.getters.UserToken)
+/*
+            axios.get('/api/accountviewer', {
+                token: this.$store.getters.UserToken
             }).then(response => {
                 console.log(response)
             }).catch((e) => {
                 this.errorMessages = 'エラーが発生しました。'
                 this.errorDialog = true
             })
+*/
         }
     }
 }

@@ -31,7 +31,7 @@
                     <v-btn
                         block
                         color="primary"
-                        @click="doLogin"
+                        @click="login"
                     >
                         <v-icon left>mdi-login</v-icon>
                        ログイン
@@ -48,7 +48,10 @@
 </template>
 
 <script>
-import axios from "axios"
+//import axios from "axios"
+import auth from '../store/modules/auth'
+import http from '../services/http'
+
 import ErrorDialog from '../components/global/ErrorDialog'
 export default {
     name: 'Login',
@@ -67,7 +70,8 @@ export default {
         source: String
     },
     methods: {
-        doLogin() {
+        login() {
+/*
             axios.post('/api/login', {
                 email: this.account.email,
                 password: this.account.password
@@ -86,6 +90,13 @@ export default {
                     this.$router.push({ path: '/portfolio/home' })
                 }
             }).catch((e) => {
+                this.errorMessages = 'アカウントが正しくありません。'
+                this.errorDialog = true
+            })
+*/
+            auth.login(this.account.email, this.account.password, res => {
+                this.$router.push({ path: '/portfolio/home' })
+            }, error => {
                 this.errorMessages = 'アカウントが正しくありません。'
                 this.errorDialog = true
             })

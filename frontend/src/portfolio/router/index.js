@@ -31,7 +31,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth) && !Store.state.auth.userToken) {
+    if (to.matched.some(record => record.meta.requiresAuth) && !Store.state.auth.authenticated) {
         next({ path: '/portfolio', query: { redirect: to.fullPath } })
     } else {
         next()

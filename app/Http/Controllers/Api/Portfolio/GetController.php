@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class GetController extends Controller
 {
-    public $Sv;
+    private $Sv;
 
     /**
      * construct
@@ -18,7 +18,6 @@ class GetController extends Controller
      */
     function __construct()
     {
-        parent::__construct();
         $this->Sv = new UserViewerService();
     }
 
