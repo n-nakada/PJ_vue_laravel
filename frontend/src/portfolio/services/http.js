@@ -43,7 +43,6 @@ export default {
         })
 
         axios.interceptors.response.use(response => {
-            console.log(response)
             // ...get the token from the header or response data if exists, and save it.
             const token = response.headers['Authorization'] || response.data['token']
             if (token) {

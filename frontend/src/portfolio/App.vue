@@ -211,8 +211,8 @@ export default {
                 link: '',
                 active: false,
                 lists: [{
-                    name: 'Colors',
-                    link: '/portfolio/home'
+                    name: '出没チェック',
+                    link: '/portfolio/schedule'
                 },{
                     name: 'Content',
                     link: '/portfolio/next'

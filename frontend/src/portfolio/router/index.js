@@ -9,6 +9,7 @@ import Usersview from '@/portfolio/views/UsersView.vue'
 import Home from '@/portfolio/views/Home.vue'
 import Next from '@/portfolio/views/Next.vue'
 import SimpleTable from '@/portfolio/views/SimpleTable.vue'
+import Schedule from '@/portfolio/views/Schedule.vue'
 
 // store
 import Store from '@/portfolio/store/index.js'
@@ -20,7 +21,8 @@ const routes = [
     {name: 'ダッシュボード', path: '/portfolio/home', component: Home, meta: { requiresAuth: true }},
     {name: 'Next', path: '/portfolio/next', component: Next, meta: { requiresAuth: true }},
     {name: 'シンプルテーブル', path: '/portfolio/simpletable', component: SimpleTable, meta: { requiresAuth: true }},
-    {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')}
+    {name: 'スケジュール', path: '/portfolio/schedule', component: Schedule, meta: { requiresAuth: true }},
+    {name: 'About', path: '/about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')},
 ]
 
 Vue.use(VueRouter)

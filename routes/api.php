@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Portfolio\GetController;
+use App\Http\Controllers\Api\Portfolio\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,13 @@ Route::group(["middleware" => "api"], function () {
         Route::get('accountviewer', 'App\Http\Controllers\Api\Portfolio\GetController@getAccountViewer');
     });
 */
+    Route::get('me', 'App\Http\Controllers\Api\AuthController@me');
     Route::post('authenticate', 'App\Http\Controllers\Api\AuthController@authenticate');
+    Route::post('schedule', 'App\Http\Controllers\Api\Portfolio\ScheduleController@check');
     Route::get('logout',  'App\Http\Controllers\Api\AuthController@logout')->middleware('jwt.refresh');
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::resource('accountviewer', 'GetController@getAccountViewer');
-        Route::get('me', 'App\Http\Controllers\Api\AuthController@getCurrentUser');
+        //Route::get('me', 'App\Http\Controllers\Api\AuthController@getCurrentUser');
     });
 });
 
